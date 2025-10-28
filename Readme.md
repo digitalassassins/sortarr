@@ -49,7 +49,7 @@ There is no fixed limit to the number of pairs, as long as the variables are nam
 
 ### Using Docker Run: ###
 
-```sh
+```bash
 docker run -p 8990:80 -v ./config:"/config" --name sortarr docker.io/mitsie/sortarr -d
 ```
 
@@ -68,8 +68,9 @@ services:
 	volumes:
 	  - ./config:/config
 ```
+
 ##### then run the command:
-```sh
+```bash
 docker compose -f docker-compose.yaml up -d
 ```
 

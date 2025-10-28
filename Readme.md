@@ -3,15 +3,18 @@
 This container builds upon the `alekslyse/sonarr_tag_move` project
 and also the `buesche87/sonarrchiver` project
 
-####Changes to the project include:
+#### Changes to the project include:
 
-	- Removal or Cron to switch to a webhook system (keeping system resources to a minimum)
-	- Adding the webhook to Radarr & Sonarr means auto archiving is only triggered on Series Add
-	  This makes it a really effective combination with Overseer/Jellyseer as new movies are instantly archived once added.
-	  Which prevents the breaking of Transcoding with Tdarr, Archiving is done before Tdarr can grab the video file.
-	- Added the ability to auto archive for both Sonarr and Radarr
-	- Moved environment variables to `settings.env` in a mounted volume, for portability and changing settings quickly
-	- Auto Add missing folders in Radarr/Sonarr on run
+- Removal or Cron to switch to a webhook system (keeping system resources to a minimum)
+- Adding the webhook to Radarr & Sonarr means auto archiving is only triggered on Series Add
+  This makes it a really effective combination with Overseer/Jellyseer as new movies are 
+  instantly archived once added.
+  Which prevents the breaking of Transcoding with Tdarr, Archiving is done before Tdarr 
+  can grab the video file and start the encoding process.
+- Added the ability to auto archive for both Sonarr and Radarr
+- Moved environment variables to `settings.env` in a mounted volume, for portability and 
+  changing settings quickly
+- Auto Add missing folders in Radarr/Sonarr on run
 
 The script has been extended to support **multiple tag/root-folder pairs**.  
 To use this feature, define one or more `SONARR_FOLDER_PAIR_X` / `RADARR_FOLDER_PAIR_X` environment variables, e.g.:
@@ -44,30 +47,31 @@ There is no fixed limit to the number of pairs, as long as the variables are nam
 
 # How to install
 
-###Using Docker Run:###
+### Using Docker Run: ###
 
-	```
-	docker run -p 8990:80 -v ./config:"/config" --name sortarr docker.io/mitsie/sortarr -d
-	```
+```
+docker run -p 8990:80 -v ./config:"/config" --name sortarr docker.io/mitsie/sortarr -d
+```
 
-###Using Docker Compose:###
+### Using Docker Compose:
 	
-	#####docker-compose.yaml:
-	```
-	services:
-	  sortarr:
-		image: docker.io/mitsie/sortarr:latest
-		container_name: sortarr
-		hostname: sortarr
-		ports: 
-		  - 8990:80
-		volumes:
-		  - ./config:/config
-	```
+##### docker-compose.yaml:
+
+```
+services:
+  sortarr:
+	image: docker.io/mitsie/sortarr:latest
+	container_name: sortarr
+	hostname: sortarr
+	ports: 
+	  - 8990:80
+	volumes:
+	  - ./config:/config
+```
 	
-	```
-	docker compose -f docker-compose.yaml up -d
-	```
+```
+docker compose -f docker-compose.yaml up -d
+```
 
 ### Setting up a Webhook
 

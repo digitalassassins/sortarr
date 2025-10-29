@@ -123,3 +123,10 @@ This will fire the Sortarr webhook, which will instantly change the root folder 
 	
 Enjoy!
 	
+### Features to add in the future
+
+- Web Interface to change settings within the web browser
+- Database to store folder pairs instead of environment variables
+- Simpler auto tagging web interface to add auto tagging to both Sonarr/Radarr via API
+- Stored logs to keep a track of the API root folder updates
+- Get Sortarr to set up webhooks automatically on first run

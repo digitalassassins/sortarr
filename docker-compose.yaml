@@ -1,0 +1,9 @@
+services:
+  sortarr:
+    image: docker.io/mitsie/sortarr:latest
+    container_name: sortarr
+    hostname: sortarr
+    ports: 
+      - 8990:80
+    volumes:
+      - ./config:/config

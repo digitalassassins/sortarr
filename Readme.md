@@ -76,25 +76,25 @@ docker compose -f docker-compose.yaml up -d
 
 ### Setting up a Webhook
 
-	- Install Docker container
-	- Navigate to `config/settings.env`
-	- Enter Radarr Base URL & API Key, And/Or Sonarr Base URL & API Key
-		e.g. if you have set a hostname, it can be `http://sonarr:8998`/`http://radarr:7878`
-		     can be `http://localhost`
-			 Or if you are on Windows on a separate bridge network from Sortarr
-			 The Docker magic host `http://host.docker.internal`
-	- Enter `Tag:Folder` pairs 
-		`Any folders not listed in Sonarr / Radarr will be added on run, must be 
-		accessible by that Radarr/Sonarr container`
-	- Restart the container in Docker to pick up the config changes
-	- Go to Radarr/Sonarr -> Settings -> Connect
-	- Click `+` and choose `Web Hook`
-	- Give the Webhook a name
-	- Untick all trigger checkboxes and only select 
-		`On Movie Added` (Radarr) / `On Series Added` (Sonarr)
-	- Webhook URL = `http://localhost:8990` (Or base URL provided in `settings.env` file)
-	- Username leave empty
-	- Password leave empty
+- Install Docker container
+- Navigate to `config/settings.env`
+- Enter Radarr Base URL & API Key, And/Or Sonarr Base URL & API Key
+	e.g. if you have set a hostname, it can be `http://sonarr:8998`/`http://radarr:7878`
+		 can be `http://localhost`
+		 Or if you are on Windows on a separate bridge network from Sortarr
+		 The Docker magic host `http://host.docker.internal`
+- Enter `Tag:Folder` pairs 
+	`Any folders not listed in Sonarr / Radarr will be added on run, must be 
+	accessible by that Radarr/Sonarr container`
+- Restart the container in Docker to pick up the config changes
+- Go to Radarr/Sonarr -> Settings -> Connect
+- Click `+` and choose `Web Hook`
+- Give the Webhook a name
+- Untick all trigger checkboxes and only select 
+	`On Movie Added` (Radarr) / `On Series Added` (Sonarr)
+- Webhook URL = `http://localhost:8990` (Or base URL provided in `settings.env` file)
+- Username leave empty
+- Password leave empty
 
 ### Setting up Auto Tagging
 
@@ -104,19 +104,19 @@ Under my `settings.env`, I have the folder pairs:
 `RADARR_TAG_FOLDER_PAIR_1="kids:/mnt/downloads/-Kids Movies"`
 To set up the auto tagging, here is an example:
 
-	- Go to Radarr -> Settings -> Tags
-	- Under `Auto Tagging`, click the `+` Plus button
-	- Give it a name, I've called mine `Children Animation`
-	- under tag, enter your own tag you want to tag movies with
-	  I've chosen `kids` for simplicity
-	- Under `Condition`, click the `+` Plus button
-	- Choose `Genre` and enter a name. I've put `Children`
-	- In the field `Genre(s)` enter `Children`
-	- Tick `Required` then click save
-	- Under `Condition`, click the `+` Plus button again
-	- Choose `Genre` and enter a name. I've put `Animation`
-	- In the field `Genre(s)` enter `Animation`
-	- Tick `Required` then click save
+- Go to Radarr -> Settings -> Tags
+- Under `Auto Tagging`, click the `+` Plus button
+- Give it a name, I've called mine `Children Animation`
+- under tag, enter your own tag you want to tag movies with
+  I've chosen `kids` for simplicity
+- Under `Condition`, click the `+` Plus button
+- Choose `Genre` and enter a name. I've put `Children`
+- In the field `Genre(s)` enter `Children`
+- Tick `Required` then click save
+- Under `Condition`, click the `+` Plus button again
+- Choose `Genre` and enter a name. I've put `Animation`
+- In the field `Genre(s)` enter `Animation`
+- Tick `Required` then click save
 
 Now, when a Movie is added, if it has both the Genres `Children` and `Animation`, it will auto-add the tag `kids`
 This will fire the Sortarr webhook, which will instantly change the root folder for the movie.
